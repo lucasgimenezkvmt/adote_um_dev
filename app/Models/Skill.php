@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class Skill extends Model
 {
     use HasFactory;
+
+    public function category(): BelongsTo {
+        return $this->belongsTo(Category::class);
+    }
 }

@@ -10,4 +10,8 @@ class Interest extends Model
     use HasFactory;
 
     protected $casts = ['data' => 'array'];
+
+    public function user(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
 }
