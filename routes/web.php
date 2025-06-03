@@ -22,9 +22,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::view('/', 'welcome')->name('home');
+//Route::view('/', 'welcome')->name('home');
 
-Route::get('primeiraRota', Screen::class)
+Route::get('/', Screen::class)
     ->name('primeiraRota');
 
 Route::middleware('guest')->group(function () {

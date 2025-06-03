@@ -8,6 +8,6 @@ class Screen extends Component
 {
     public function render()
     {
-        return view('livewire.components.splash.screen');
+        return view('livewire.components.splash-screen');
     }
 }
