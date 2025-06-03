@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Http\Livewire\Components\Splash;
+namespace App\Http\Livewire\Components;
 
 use Livewire\Component;
 
-class Screen extends Component
+class SplashScreen extends Component
 {
     public function render()
     {

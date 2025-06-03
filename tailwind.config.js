@@ -1,7 +1,7 @@
 const defaultTheme = require('tailwindcss/defaultTheme');
 
 module.exports = {
-    mode: 'iit',
+    mode: 'jit',
     theme: {
         extend: {
             fontFamily: {
