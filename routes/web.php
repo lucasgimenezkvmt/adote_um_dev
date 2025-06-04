@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\Auth\GithubController;
+use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
 use App\Http\Livewire\Auth\Passwords\Email;
@@ -59,3 +61,15 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', LogoutController::class)
         ->name('logout');
 });
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+})->name('socialite.redirect-github');
+
+Route::get('/auth/github/callback', GithubController::class);
+
+Route::get('/auth/google/redirect', function () {
+    return Socialite::driver('google')->redirect();
+})->name('socialite.redirect-google');
+
+//Route::get('/auth/google/callback', GoogleController::class);
