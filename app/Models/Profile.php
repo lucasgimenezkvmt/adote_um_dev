@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelogsTo;
 
 class Profile extends Model
 {
@@ -17,4 +18,8 @@ class Profile extends Model
         'avatar',
         'data'
     ];
+
+      public function profile(): BelongsTo {
+        return $this->belongsTo(User::class);
+    }
 }

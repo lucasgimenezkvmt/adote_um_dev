@@ -49,8 +49,8 @@ class User extends Authenticatable
         return $this->hasOne(Interest::class);
     }
 
-    public function preference(): HasOne {
-        return $this->hasOne(Preference::class);
+    public function profile(): HasOne {
+        return $this->hasOne(Profile::class);
     }
 
     public function sentActions(): HasMany {

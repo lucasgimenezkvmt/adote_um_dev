@@ -27,7 +27,7 @@ class GithubController extends Controller
                 [
                     'name' => $user->name,
                     'password' => Hash::make(Str::random(7))
-                ])->load('interest', 'preference');
+                ]); //->load('interest', 'preference')
 
                 Profile::updateOrCreate([
                     'user_id' => $this->authUser->id,
