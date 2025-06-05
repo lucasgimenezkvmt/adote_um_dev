@@ -11,14 +11,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use App\Models\User;
 use App\Models\Profile;
-class GithubController extends Controller
+
+class GoogleController extends Controller
 {
-    const NAME = 'GITHUB';
+    const NAME = 'GOOGLE';
     protected User $authUser;
     //RedirectResponse
     public function __invoke() {
         try {
-            $user = Socialite::driver('github')->user();
+            $user = Socialite::driver('google')->user();
 
             DB::transaction(function() use($user) {
                 $this->authUser = User::updateOrCreate([

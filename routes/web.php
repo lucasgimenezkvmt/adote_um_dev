@@ -12,6 +12,9 @@ use App\Http\Livewire\Auth\Register;
 use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\Components\SplashScreen;
 use App\Http\Livewire\Components\HomeScreen;
+use App\Http\Livewire\Components\InterestScreen;
+use App\Http\Livewire\Components\PreferenceScreen;
+use App\Http\Livewire\Components\DevelopersScreen;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -27,8 +30,14 @@ use Illuminate\Support\Facades\Route;
 
 //Route::view('/', 'welcome')->name('home');
 
-Route::get('/', SplashScreen::class)->name('primeiraRota');
+Route::get('/', SplashScreen::class)->name('app.splash');
 Route::get('home', HomeScreen::class)->name('app.home');
+
+Route::get('interesses', InterestScreen::class)->name('app.interest');
+
+Route::get('preferencias', PreferenceScreen::class)->name('app.preference');
+
+Route::get('desenvolvedores', DevelopersScreen::class)->name('app.developers');
 
 Route::middleware('guest')->group(function () {
     Route::get('login', Login::class)
@@ -62,14 +71,14 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::get('/auth/redirect', function () {
+Route::get('/auth/github/redirect', function () {
     return Socialite::driver('github')->redirect();
 })->name('socialite.redirect-github');
 
-Route::get('/auth/github/callback', GithubController::class);
+Route::get('/auth/github', GithubController::class);
 
 Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
 })->name('socialite.redirect-google');
 
-//Route::get('/auth/google/callback', GoogleController::class);
+Route::get('/auth/google', GoogleController::class);
