@@ -77,3 +77,4 @@
     </template>
 </div>
 
+<script src="{{ url(mix('js/app.js')) }}" defer></script>
