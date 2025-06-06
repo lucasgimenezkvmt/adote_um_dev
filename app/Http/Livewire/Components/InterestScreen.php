@@ -14,7 +14,8 @@ class InterestScreen extends Component
 
     public function mount()
     {
-          $this->typeLoadPage = request('type') ?? '';
+        $this->payload = [];
+        $this->typeLoadPage = request('type') ?? '';
         $this->user = auth()->user()->load('profile')->toArray();
         $skillRemove = [];
         if ($this->typeLoadPage === 'edit') {
@@ -39,7 +40,9 @@ class InterestScreen extends Component
     }
 
     public function save() {
-        try {
+        return redirect()->route('app.preference');
+        /*try {
+            dd($this->payload);
             $this->insertInterestsData();
 
             if (userIsDeveloper()) {
@@ -53,6 +56,6 @@ class InterestScreen extends Component
         } catch (\Exception $exception) {
             //todo: adicionar notificação com erro para o usuário (izitoast)
             dd($exception->getMessage());
-        }
+        }*/
     }
 }
