@@ -108,4 +108,6 @@ return [
 
     'password_timeout' => 10800,
 
+    'auto_login' => env('AUTH_AUTO_LOGIN', false),
+
 ];

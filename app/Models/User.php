@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Interest;
+use App\Models\Preference;
 
 class User extends Authenticatable
 {
@@ -45,8 +46,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function interest(): HasOne {
-        return $this->hasOne(Interest::class);
+    public function interests(): HasMany {
+        return $this->hasMany(Interest::class);
+    }
+
+     public function preference(): HasMany
+    {
+        return $this->hasMany(Preference::class);
     }
 
     public function profile(): HasOne {

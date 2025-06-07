@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\EmailVerificationController;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\Auth\GithubController;
+use App\Http\Controllers\Auth\SocialiteCallbackController;
 use App\Http\Controllers\Auth\GoogleController;
 use App\Http\Livewire\Auth\Login;
 use App\Http\Livewire\Auth\Passwords\Confirm;
@@ -71,7 +72,7 @@ Route::middleware('auth')->group(function () {
         ->name('logout');
 });
 
-Route::get('/auth/github/redirect', function () {
+/*Route::get('/auth/github/redirect', function () {
     return Socialite::driver('github')->redirect();
 })->name('socialite.redirect-github');
 
@@ -81,4 +82,11 @@ Route::get('/auth/google/redirect', function () {
     return Socialite::driver('google')->redirect();
 })->name('socialite.redirect-google');
 
-Route::get('/auth/google', GoogleController::class);
+Route::get('/auth/google', GoogleController::class);*/
+
+Route::group(['prefix' => 'auth', 'as' => 'socialite.'], function () {
+    Route::get('/{driver}/redirect', function (string $driver) {
+        return Socialite::driver($driver)->redirect();
+    })->name('redirect')->middleware('checkIfAutoLogin');
+    Route::get('auth/{driver}', SocialiteCallbackController::class)->name('callback');
+});
