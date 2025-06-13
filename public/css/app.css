@@ -1052,6 +1052,9 @@ input:invalid, textarea:invalid, select:invalid {
 .fill-current {
 	fill: currentColor;
 }
+.p-10 {
+	padding: 2.5rem;
+}
 .p-4 {
 	padding: 1rem;
 }
@@ -1179,6 +1182,10 @@ input:invalid, textarea:invalid, select:invalid {
 .text-gray-100 {
 	--tw-text-opacity: 1;
 	color: rgba(243, 244, 246, var(--tw-text-opacity));
+}
+.text-black {
+	--tw-text-opacity: 1;
+	color: rgba(0, 0, 0, var(--tw-text-opacity));
 }
 .text-gray-500 {
 	--tw-text-opacity: 1;

@@ -33,6 +33,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', SplashScreen::class)->name('app.splash');
 Route::get('home', HomeScreen::class)->name('app.home');
+Route::get('teste', function() {
+    return view('teste');
+})->name('app.test');
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('interesses', InterestScreen::class)->name('app.interest');
@@ -88,5 +91,5 @@ Route::group(['prefix' => 'auth', 'as' => 'socialite.'], function () {
     Route::get('/{driver}/redirect', function (string $driver) {
         return Socialite::driver($driver)->redirect();
     })->name('redirect')->middleware('checkIfAutoLogin');
-    Route::get('auth/{driver}', SocialiteCallbackController::class)->name('callback');
+    Route::get('/{driver}', SocialiteCallbackController::class)->name('callback');
 });

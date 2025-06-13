@@ -53,7 +53,6 @@ it("checks a new user's login with Google", function(){
 
     $this->followRedirects($authGoogle)
         ->assertSeeLivewire(InterestScreen::class);
-    dd("opa");
 });
 
 it("checks a new user's login with Github", function(){

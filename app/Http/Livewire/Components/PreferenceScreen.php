@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Components;
 
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Preference;
 
 class PreferenceScreen extends Component
 {
@@ -11,6 +12,27 @@ class PreferenceScreen extends Component
     public $user;
     public ?array $categories = [];
     public ?array $payload = [];
+
+    public function save() {
+        # 
+        try {
+            #dd($this->payload);
+            $this->insertPreferencesData();
+
+            return redirect()->route('app.developers');
+        } catch (\Exception $exception) {
+            //todo: adicionar notificação com erro para o usuário (izitoast)
+            dd($exception->getMessage());
+        }
+    }
+
+    public function insertPreferencesData() {
+        Preference::query()->updateOrCreate([
+            'user_id' => auth()->user()->id,
+        ], [
+            'data' => json_encode($this->payload)
+        ]);
+    }
 
     public function mount(): void
     {

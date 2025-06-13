@@ -1,6 +1,7 @@
 document.addEventListener("alpine:init", () => {
     Alpine.data("startForm", (params) => {
         let dataEdit = []
+        console.log(params)
         console.log(params.typeResource.initialValue);
         if( params.typeResource.initialValue === 'interests' ){
             dataEdit = params.interests

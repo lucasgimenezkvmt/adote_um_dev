@@ -4,11 +4,12 @@ namespace App\Http\Livewire\Components;
 
 use Livewire\Component;
 use App\Models\Category;
+use App\Models\Interest;
 
 class InterestScreen extends Component
 {
     public string $typeLoadPage = '';
-    public $user;
+    public array $user;
     public ?array $categories = [];
     public ?array $payload = [];
 
@@ -16,7 +17,10 @@ class InterestScreen extends Component
     {
         $this->payload = [];
         $this->typeLoadPage = request('type') ?? '';
-        $this->user = auth()->user()->load('profile')->toArray();
+        #$this->user = auth()->user()->load('profile')->toArray();
+        $this->user = auth()->user()
+            ?->load('profile', 'interests.skill.category', 'preference')
+            ->toArray();
         $skillRemove = [];
         if ($this->typeLoadPage === 'edit') {
             foreach ($this->user['interests'] as $interests) {
@@ -40,22 +44,32 @@ class InterestScreen extends Component
     }
 
     public function save() {
-        return redirect()->route('app.preference');
-        /*try {
-            dd($this->payload);
+        # 
+        try {
+            #dd($this->payload);
             $this->insertInterestsData();
 
             if (userIsDeveloper()) {
                 if ($this->typeLoadPage === 'edit') {
                     return redirect()->route('app.profile');
                 }
-                return redirect()->route('app.knowledge');
+                return redirect()->route('app.preference');
+                #return redirect()->route('app.knowledge');
             }
 
             return redirect()->route('app.developers');
         } catch (\Exception $exception) {
             //todo: adicionar notificação com erro para o usuário (izitoast)
             dd($exception->getMessage());
-        }*/
+        }
+    }
+
+    private function insertInterestsData(): void
+    {
+        Interest::query()->updateOrCreate([
+            'user_id' => auth()->user()->id,
+        ], [
+            'data' => json_encode($this->payload)
+        ]);
     }
 }

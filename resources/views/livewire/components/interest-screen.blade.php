@@ -9,7 +9,7 @@
         </div>
         <div class="mt-5">
             <x-start-form />
-
+            
             <div class="flex flex-row w-full">
                 <button wire:click="save"
                         class="flex flex-row space-x-2 justify-center items-center bg-primary-100 p-4 text-white w-full text-sm rounded-full mt-8 font-bold transform duration-150 active:scale-95"
