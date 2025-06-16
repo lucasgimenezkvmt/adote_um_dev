@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use App\Models\Interest;
-use App\Models\Preference;
+use App\Models\Knowledge;
 
 class User extends Authenticatable
 {
@@ -50,9 +50,9 @@ class User extends Authenticatable
         return $this->hasMany(Interest::class);
     }
 
-     public function preference(): HasMany
+     public function knowledge(): HasMany
     {
-        return $this->hasMany(Preference::class);
+        return $this->hasMany(knowledge::class);
     }
 
     public function profile(): HasOne {

@@ -19,7 +19,7 @@ class InterestScreen extends Component
         $this->typeLoadPage = request('type') ?? '';
         #$this->user = auth()->user()->load('profile')->toArray();
         $this->user = auth()->user()
-            ?->load('profile', 'interests.skill.category', 'preference')
+            ?->load('profile', 'interests.skill.category', 'knowledge')
             ->toArray();
         $skillRemove = [];
         if ($this->typeLoadPage === 'edit') {
@@ -53,7 +53,7 @@ class InterestScreen extends Component
                 if ($this->typeLoadPage === 'edit') {
                     return redirect()->route('app.profile');
                 }
-                return redirect()->route('app.preference');
+                return redirect()->route('app.knowledge');
                 #return redirect()->route('app.knowledge');
             }
 

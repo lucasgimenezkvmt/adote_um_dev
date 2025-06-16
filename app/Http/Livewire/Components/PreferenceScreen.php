@@ -4,9 +4,9 @@ namespace App\Http\Livewire\Components;
 
 use Livewire\Component;
 use App\Models\Category;
-use App\Models\Preference;
+use App\Models\Knowledge;
 
-class PreferenceScreen extends Component
+class KnowledgeScreen extends Component
 {
     public string $typeLoadPage = '';
     public $user;
@@ -17,7 +17,7 @@ class PreferenceScreen extends Component
         # 
         try {
             #dd($this->payload);
-            $this->insertPreferencesData();
+            $this->insertKnowledgesData();
 
             return redirect()->route('app.developers');
         } catch (\Exception $exception) {
@@ -26,8 +26,8 @@ class PreferenceScreen extends Component
         }
     }
 
-    public function insertPreferencesData() {
-        Preference::query()->updateOrCreate([
+    public function insertKnowledgesData() {
+        knowledge::query()->updateOrCreate([
             'user_id' => auth()->user()->id,
         ], [
             'data' => json_encode($this->payload)
@@ -38,16 +38,16 @@ class PreferenceScreen extends Component
     {
         $this->typeLoadPage = request('type') ?? '';
         $this->user = auth()->user()
-            ?->load('profile', 'preference.skill.category', 'interests')
+            ?->load('profile', 'knowledge.skill.category', 'interests')
             ->toArray();
         $skillRemove = [];
         if ($this->typeLoadPage === 'edit') {
-            foreach ($this->user['preference'] as $interests) {
+            foreach ($this->user['knowledge'] as $interests) {
                 $skillRemove[] = $interests['skill_id'];
             }
         }
 
-        $this->user['typeResource'] = 'preference';
+        $this->user['typeResource'] = 'knowledge';
         $this->categories = Category::with([
             'skills' => function ($query) use ($skillRemove) {
                 $query->whereNotIn('id', $skillRemove);
@@ -57,6 +57,6 @@ class PreferenceScreen extends Component
 
     public function render()
     {
-        return view('livewire.components.preference-screen');
+        return view('livewire.components.knowledge-screen');
     }
 }

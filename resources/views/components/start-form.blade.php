@@ -2,7 +2,7 @@
     categories: @entangle('categories'),
     payload: @entangle('payload'),
     interests: @entangle('user.interests'),
-    preference: @entangle('user.preference'),
+    knowledge: @entangle('user.knowledge'),
     typeResource: @entangle('user.typeResource'),
 })"
      class="space-y-4 space-x-4 grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3">

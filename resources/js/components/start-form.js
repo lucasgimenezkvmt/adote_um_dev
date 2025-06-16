@@ -6,8 +6,8 @@ document.addEventListener("alpine:init", () => {
         if( params.typeResource.initialValue === 'interests' ){
             dataEdit = params.interests
         }
-        if( params.typeResource.initialValue === 'preference' ){
-            dataEdit = params.preference
+        if( params.typeResource.initialValue === 'knowledge' ){
+            dataEdit = params.knowledge
         }
 
         return {

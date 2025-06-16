@@ -14,7 +14,7 @@ use App\Http\Livewire\Auth\Verify;
 use App\Http\Livewire\Components\SplashScreen;
 use App\Http\Livewire\Components\HomeScreen;
 use App\Http\Livewire\Components\InterestScreen;
-use App\Http\Livewire\Components\PreferenceScreen;
+use App\Http\Livewire\Components\KnowledgeScreen;
 use App\Http\Livewire\Components\DevelopersScreen;
 use Illuminate\Support\Facades\Route;
 
@@ -39,7 +39,7 @@ Route::get('teste', function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('interesses', InterestScreen::class)->name('app.interest');
-    Route::get('preferencias', PreferenceScreen::class)->name('app.preference');
+    Route::get('preferencias', KnowledgeScreen::class)->name('app.knowledge');
     Route::get('desenvolvedores', DevelopersScreen::class)->name('app.developers');
 });
 

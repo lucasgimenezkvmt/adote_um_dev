@@ -27,7 +27,7 @@ class GithubController extends Controller
                 [
                     'name' => $user->name ?? $user->nickname,
                     'password' => Hash::make(Str::random(7))
-                ]); //->load('interest', 'preference')
+                ]); //->load('interest', 'knowledge')
 
                 Profile::updateOrCreate([
                     'user_id' => $this->authUser->id,
@@ -45,8 +45,8 @@ class GithubController extends Controller
                 return redirect()->route('app.interest');
             }
 
-            if(is_null($this->authUser->preference)) {
-                return redirect()->route('app.preference');
+            if(is_null($this->authUser->knowledge)) {
+                return redirect()->route('app.knowledge');
             }
 
             return redirect()->route('app.developers');
