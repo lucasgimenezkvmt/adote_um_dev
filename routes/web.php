@@ -39,7 +39,7 @@ Route::get('teste', function() {
 
 Route::group(['middleware' => 'auth'], function() {
     Route::get('interesses', InterestScreen::class)->name('app.interest');
-    Route::get('preferencias', KnowledgeScreen::class)->name('app.knowledge');
+    Route::get('conhecimentos', KnowledgeScreen::class)->name('app.knowledge');
     Route::get('desenvolvedores', DevelopersScreen::class)->name('app.developers');
 });
 

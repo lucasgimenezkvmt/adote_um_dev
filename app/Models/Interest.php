@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelogsTo;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Interest extends Model
 {
@@ -16,5 +16,15 @@ class Interest extends Model
 
     public function user(): BelongsTo {
         return $this->belongsTo(User::class);
+    }
+
+    public function skills(): HasMany
+    {
+        return $this->hasMany(Skill::class);
+    }
+
+      public function skill(): BelongsTo
+    {
+        return $this->belongsTo(Skill::class);
     }
 }

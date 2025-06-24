@@ -65,7 +65,7 @@ class InterestScreen extends Component
     }
 
     private function insertInterestsData(): void
-    {
+    {        
         Interest::query()->updateOrCreate([
             'user_id' => auth()->user()->id,
         ], [

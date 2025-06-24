@@ -13,4 +13,9 @@ class Skill extends Model
     public function category(): BelongsTo {
         return $this->belongsTo(Category::class);
     }
+
+    public function knowledge(): HasMany
+    {
+        return $this->hasMany(Knowledge::class);
+    }
 }
